@@ -1,0 +1,3 @@
+# Catch all for unspecified items
+# This is listed first as CODEOWNERS is chained bottom to top
+* 0xAlcibiades

@@ -1,0 +1,38 @@
+default_language_version:
+  python: python3
+repos:
+  - repo: https://github.com/psf/black
+    rev: 19.10b0
+    hooks:
+      - id: black
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.8.0
+    hooks:
+      - id: isort
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: end-of-file-fixer
+        exclude: ^tests/sample_outputs
+      - id: trailing-whitespace
+        name: Trim Trailing Whitespace
+        description: This hook trims trailing whitespace.
+        entry: trailing-whitespace-fixer
+        language: python
+        types: [text]
+      - id: flake8
+        language_version: python3
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.812
+    hooks:
+      - id: mypy
+  - repo: local
+    hooks:
+      - id: tests
+        name: Run PyTest Test Cases
+        entry: pytest -v tests/
+        language: python
+        types: [python]
+        stages: [push]
+        pass_filenames: false
+        language_version: python3
